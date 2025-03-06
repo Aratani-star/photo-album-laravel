@@ -24,10 +24,6 @@ class GalleryController extends Controller
         return Inertia::render('gallery', [
             'images' => $images
         ]);
-        // return Inertia::render('profile/', [
-        //     'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-        //     'status' => $request->session()->get('status'),
-        // ]);
     }
 
     /**
