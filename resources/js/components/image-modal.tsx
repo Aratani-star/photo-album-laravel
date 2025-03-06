@@ -14,7 +14,7 @@ export default function ImageModal({ image, onClose }: ImageModalProps) {
         <button className="absolute top-2 right-2 text-gray-600" onClick={onClose}>
           ✖
         </button>
-        <img src={image.url} alt={image.name} className="w-full h-60 object-cover rounded" />
+        <img src={"http://localhost:8000/storage/" + image.url} alt={image.name} className="w-full h-60 object-cover rounded" />
         <h2 className="text-xl font-bold mt-2">{image.name}</h2>
         {image.description && <p className="text-gray-600 mt-1">{image.description}</p>}
       </div>

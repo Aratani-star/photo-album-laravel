@@ -1,11 +1,12 @@
 import { type BreadcrumbItem, type SharedData } from '@/types';
 import { Head } from '@inertiajs/react';
+import { useState } from 'react';
 
 import AppLayout from '@/layouts/app-layout';
 import Heading from '@/components/heading';
 import ImageItem from '@/components/image-item'
-import { useState } from 'react';
 import ImageModal from '@/components/image-modal'
+import ImageUploadButton from '@/components/image-upload-btn'
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Gallery',
@@ -20,8 +21,10 @@ export default function Gallery( {images}: {images: string;}) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Gallery" />
+            
             <div className="px-4 py-6">
                 <Heading title="WILD GALLERY" description="Shows wild animals album." />
+                <ImageUploadButton />
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
                     {
                         images.map((img) => (
