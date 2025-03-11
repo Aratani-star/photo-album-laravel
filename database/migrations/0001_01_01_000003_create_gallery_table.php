@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('url');
             $table->string('name');
             $table->string('description');
-            $table->unsignedInteger('created_at');
-            $table->unsignedInteger('updated_at');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
     }
 

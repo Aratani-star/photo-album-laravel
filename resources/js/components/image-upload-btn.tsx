@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";
+import axios from 'axios';
+import { useState } from 'react';
 
 const ImageUpload = () => {
     const [image, setImage] = useState(null);
@@ -23,32 +23,37 @@ const ImageUpload = () => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("image", image);
+        formData.append('image', image);
         try {
             const response = await axios.post(
-                "http://localhost:8000/gallery/upload", // Replace with your API URL
+                'http://localhost:8000/gallery/upload', // Replace with your API URL
                 formData,
                 {
                     headers: {
-                        "Content-Type": "multipart/form-data",
+                        'Content-Type': 'multipart/form-data',
                     },
-                }
+                },
             );
         } catch (error) {
-            console.error("Error uploading image", error);
+            console.error('Error uploading image', error);
         }
     };
-
+    
     return (
         <div>
             <form onSubmit={handleSubmit} className="flex items-center gap-4">
                 <input type="file" id="upload" className="hidden" onChange={handleImageChange} />
-                <label htmlFor="upload" className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition" >Select Image</label>
-                {imagePreview && ( <img src={imagePreview} alt="Preview" className="w-16 h-16 object-cover rounded-md" /> )}
-                {imagePreview && ( <button type="submit" className="cursor-pointer bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">Upload Image</button> )}
+                <label htmlFor="upload" className="cursor-pointer rounded-lg bg-blue-500 px-4 py-2 text-white transition hover:bg-blue-600">
+                    Select Image
+                </label>
+                {imagePreview && <img src={imagePreview} alt="Preview" className="h-16 w-16 rounded-md object-cover" />}
+                {imagePreview && (
+                    <button type="submit" className="cursor-pointer rounded-lg bg-green-500 px-4 py-2 text-white transition hover:bg-green-600">
+                        Upload Image
+                    </button>
+                )}
             </form>
         </div>
-
     );
 };
 
