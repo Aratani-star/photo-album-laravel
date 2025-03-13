@@ -60,4 +60,26 @@ class ProfileController extends Controller
 
         return redirect('/');
     }
+
+    /**
+     * Verify the user's email address.
+     */
+
+    public function verify(Request $request): RedirectResponse
+    {
+        $request->user()->sendEmailVerificationNotification();
+        $request->session()->flash('status', 'verification-link-sent');
+    }
+
+    /**
+     * Resend the email verification notification.
+     */
+
+    public function resend(Request $request): RedirectResponse
+    {
+        if($request->user()->hasVerifiedEmail()) {
+            return redirect()->intended(config('fortify.home'));
+        }
+    }
+
 }

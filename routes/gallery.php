@@ -8,6 +8,5 @@ Route::middleware('auth')->group(function () {
     Route::redirect('gallery', 'gallery/get');
 
     Route::get('gallery/get', [GalleryController::class, 'get'])->name('Gallery.get');
-    Route::post('gallery/create', [GalleryController::class, 'create'])->name('Gallery.update');
-    Route::post('gallery/update', [GalleryController::class, 'update'])->name('Gallery.destroy');
+    Route::post('gallery/upload', [GalleryController::class, 'upload'])->name('Gallery.upload');
 });
