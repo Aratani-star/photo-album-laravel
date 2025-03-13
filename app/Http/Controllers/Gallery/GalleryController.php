@@ -11,12 +11,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Domain\Image\WorkFlows\ImageWorkflow;
 
 class GalleryController extends Controller
 {   
     /**
      * Show the user's profile settings page.
      */
+    public function __construct(
+        private ImageWorkflow $workflow,
+    ) {
+    }
     public function get(Request $request): Response
     {
         $images = DB::table('images')->get();
@@ -34,15 +39,15 @@ class GalleryController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|4096', // adjust size and types
         ]);
      
+
+        $image = $request->file('image');
+
         // Store the image file
-        $path = $request->file('image')->store('images', 'public'); // Store in the "images" folder
+
+        $this->workflow->uploadImage($image);
     
         // Save image info to the database (optional)
-        $image = new Image();
-        $image->url = $path;
-        $image->name = "Upload";
-        $image->description = "Uploaded Image";
-        $image->save();
+        
     
         return response()->json(['image' => $path], 200);
     }

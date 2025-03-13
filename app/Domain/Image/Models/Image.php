@@ -12,5 +12,3 @@ class Image
     }
 }
 // Compare this snippet from app/Domain/Image/Repositories/ImageRepository.php:
-/**
- */
